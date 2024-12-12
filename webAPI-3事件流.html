@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.father {
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: relative;
+			}
+			.son {
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="father">
+			<div class="son"></div>
+		</div>
+		<script>
+			// 事件流：事件捕获阶段 -> 事件目标阶段 -> 事件冒泡阶段
+			// 事件捕获阶段：从外向内
+            // 加上true表示在捕获阶段执行，不加表示在冒泡阶段执行
+			const father = document.querySelector('.father');
+            const son = document.querySelector('.son');
+
+			/* document.addEventListener('click', function () {
+				alert('我是document,也是最外层的元素')
+			}, true);
+			father.addEventListener('click', function () {
+				alert('我是父元素')
+			}, true);
+			son.addEventListener('click', function () {
+				alert('我是子元素')
+			}, true); */
+            // 先输出document,再输出父元素，最后输出子元素
+            // 若不加true，则先输出子元素，再输出父元素，最后输出document
+
+
+            document.addEventListener('click', function () {
+                alert('我是document,也是最外层的元素')
+            });
+            father.addEventListener('click', function () {
+                alert('我是父元素')
+            });
+            son.addEventListener('click', function (e) {
+                alert('我是子元素')
+                e.stopPropagation(); // 阻止事件传播,会阻止所有祖先元素的事件传播
+            });
+		</script>
+	</body>
+</html>
