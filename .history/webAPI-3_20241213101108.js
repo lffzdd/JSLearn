@@ -86,22 +86,5 @@ document.addEventListener('scroll', function () {}) //监听整个页面的滚�
 // window.scrollY = document.documentElement.scrollTop
 window.addEventListener('scroll', function () {
   console.log(window.scrollY)
-  console.log(document.documentElement.scrollTop)
+  console
 })
-// scrollTo(x,y)方法可以让页面滚动到指定位置
-// window.scrollTo(0,0) //滚动到页面顶部
-
-// 3.页面尺寸改变事件
-// 页面尺寸改变事件是指页面尺寸改变时触发的事件
-window.addEventListener('resize', function () {
-  let width = document.documentElement.clientWidth//可视区域宽度
-  let height = document.documentElement.clientHeight
-  console.log(width, height)
-})
-
-// 页面滚动到某个元素时触发事件
-// 获取元素的位置:
-// offsetWidth,offsetHeight:元素的宽度和高度,包括border和padding,不包括margin.是只读属性,不能设置
-// offsetLeft,offsetTop:元素的左边距和上边距,相对于父元素的左上角,是只读属性,如果没有定位,则相对于body
-// offsetParent:元素的定位父元素,如果没有定位,则是body
-// getBoundingClientRect():返回元素的大小及其相对于视口的位置,返回值是一个DOMRect对象,包含left,top,right,bottom,width,height属性,视口是浏览器可见区域

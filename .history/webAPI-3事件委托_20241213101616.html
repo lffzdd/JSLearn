@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="height: 3000px">
+    <ul>
+      <li>我是第1个小li</li>
+      <li>我是第2个小li</li>
+      <li>我是第3个小li</li>
+      <li>我是第4个小li</li>
+      <li>我是第5个小li</li>
+    </ul>
+    <div
+      class="scroll"
+      style="
+        width: 100px;
+        height: 100px;
+        position: fixed;
+        background: burlywood;
+        top: 100px;
+        right: 100px;
+      "
+    ></div>
+    <script>
+      let ul = document.querySelector('ul')
+      ul.addEventListener('click', function (event) {
+        console.log('我被点击了')
+        console.log(event)
+        console.log(event.target)
+        console.log(event.target.tagName)
+        console.log(event.target.innerHTML)
+        if (event.target.tagName === 'LI') {
+          event.target.style.backgroundColor = 'red'
+        }
+      })
+
+      window.addEventListener('scroll', function () {
+        const n = document.documentElement.scrollTop
+        console.log('滚动了')
+        console.log(n)
+        console.log(document.documentElement)
+        if (n>1000)
+      })
+    </script>
+  </body>
+</html>

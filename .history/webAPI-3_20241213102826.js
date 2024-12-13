@@ -100,8 +100,4 @@ window.addEventListener('resize', function () {
 })
 
 // 页面滚动到某个元素时触发事件
-// 获取元素的位置:
-// offsetWidth,offsetHeight:元素的宽度和高度,包括border和padding,不包括margin.是只读属性,不能设置
-// offsetLeft,offsetTop:元素的左边距和上边距,相对于父元素的左上角,是只读属性,如果没有定位,则相对于body
-// offsetParent:元素的定位父元素,如果没有定位,则是body
-// getBoundingClientRect():返回元素的大小及其相对于视口的位置,返回值是一个DOMRect对象,包含left,top,right,bottom,width,height属性,视口是浏览器可见区域
+// 1.获取元素的位置
