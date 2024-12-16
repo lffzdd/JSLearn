@@ -1,3 +1,9 @@
+---
+noteId: "83c99ab5b94e11ef8e6b4bf928155e05"
+tags: []
+
+---
+
 **Emmet** 是一种用于加速 HTML 和 CSS 编写的缩写语法。通过输入简短的代码片段，Emmet 能快速生成复杂的代码结构，是前端开发中的一大效率工具。
 
 ---
@@ -55,10 +61,13 @@
 ### **HTML**
 
 1. **简单嵌套结构：**
+
    ```text
    div>p>span
    ```
+
    **结果：**
+
    ```html
    <div>
        <p>
@@ -68,10 +77,13 @@
    ```
 
 2. **包含多个同级兄弟元素：**
+
    ```text
    header+section+footer
    ```
+
    **结果：**
+
    ```html
    <header></header>
    <section></section>
@@ -79,10 +91,13 @@
    ```
 
 3. **带编号列表：**
+
    ```text
    ul>li.item$*3
    ```
+
    **结果：**
+
    ```html
    <ul>
        <li class="item1"></li>
@@ -96,10 +111,13 @@
 ### **CSS**
 
 1. **简单选择器：**
+
    ```text
    .box
    ```
+
    **结果：**
+
    ```css
    .box {
        
@@ -107,10 +125,13 @@
    ```
 
 2. **嵌套选择器：**
+
    ```text
    .container>.item
    ```
+
    **结果：**
+
    ```css
    .container > .item {
        
@@ -118,10 +139,13 @@
    ```
 
 3. **带伪类：**
+
    ```text
    a:hover
    ```
+
    **结果：**
+
    ```css
    a:hover {
        
@@ -133,16 +157,19 @@
 ## **实战技巧**
 
 1. 快速生成带有**图片和文字占位符**的结构：
+
    ```text
    div.card>img[src="image.jpg"]+p{Description here}
    ```
 
 2. 快速生成**表单：**
+
    ```text
    form>label+input[type="text"]*3+button{Submit}
    ```
 
 3. 快速生成多级嵌套结构：
+
    ```text
    div#app>header>nav>ul>li*3>a{Link $}
    ```

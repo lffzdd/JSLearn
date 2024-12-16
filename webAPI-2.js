@@ -1,9 +1,9 @@
 // 一.事件监听
-const element = document.querySelector('.btn');
+const element = document.querySelector('.btn')
 // 元素对象.addEventListener('事件类型',事件处理函数)
 element.addEventListener('click', function () {
-	alert('hello');
-});
+	alert('hello')
+})
 
 // DOM L0级事件处理程序
 // 通过元素对象的属性添加事件处理程序,这种方式只能添加一个事件处理程序,如果再次添加,则会覆盖之前的事件处理程序
@@ -28,14 +28,14 @@ element.addEventListener('click', function () {
 // 三.事件对象
 // 事件对象是事件处理程序的第一个参数,可以通过事件对象获取事件的相关信息,一般命名为event或e
 element.addEventListener('click', function (e) {
-	console.log(e);
-	console.log(e.target); //获取事件的目标对象
-	console.log(e.type); //获取事件的类型
-	console.log(e.clientX); //获取事件的X坐标
-	console.log(e.clientY); //获取事件的Y坐标
-	console.log(e.offsetX); //获取事件的X坐标,相对于事件源对象
-	console.log(e.key); //获取键盘的键码,现在不提倡使用keyCode
-});
+	console.log(e)
+	console.log(e.target) //获取事件的目标对象
+	console.log(e.type) //获取事件的类型
+	console.log(e.clientX) //获取事件的X坐标
+	console.log(e.clientY) //获取事件的Y坐标
+	console.log(e.offsetX) //获取事件的X坐标,相对于事件源对象
+	console.log(e.key) //获取键盘的键码,现在不提倡使用keyCode
+})
 
 // 四.环境对象
 // 指的是事件处理程序中的this,指向事件的目标对象
@@ -46,7 +46,7 @@ element.addEventListener('click', function (e) {
 // 回调函数就是把函数作为参数传递给另一个函数,在另一个函数中调用这个函数
 // 一般把匿名函数作为回调函数
 function fn(callback) {
-	callback();
+	callback()
 }
 
-setInterval(fn, 1000);//把fn函数作为参数传递给setInterval函数
+setInterval(fn, 1000) //把fn函数作为参数传递给setInterval函数
