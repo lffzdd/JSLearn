@@ -48,3 +48,40 @@ history.back()      //后退
 history.forward()   //前进
 history.go( 1 )        //要带参数,如果是1前进一个页面,如果是-1后退一个页面
 // history 对象一般在实际开发中比较少用，但是会在一些 OA 办公系统中见到。
+
+// 二.本地存储
+// 数据可以存储在浏览器中,不会因为页面刷新或关闭而丢失,有两种存储方式:localStorage和sessionStorage,容量一般为5M
+// 1.localStorage
+// 可以永久存储,除非手动删除,存储在本地,不会随着页面的刷新而消失
+// 可以多个页面共享,同源的页面可以共享localStorage,不同源的页面无法共享,同源是指协议,域名,端口号完全相同
+// 键值对存储,只能存储字符串,可以通过setItem()和getItem()方法存取数据
+localStorage.setItem( 'key', 'value' ) //存储数据
+localStorage.getItem( 'key' ) //获取数据
+localStorage.removeItem( 'key' ) //删除数据
+// F12-Application-Local Storage可以查看localStorage的存储情况
+
+// 2.sessionStorage
+// 会话存储,数据只存在于当前会话,页面关闭后会被清除
+// 在同一个标签页中,刷新页面数据还在,但是关闭标签页数据就会被清除
+// 键值对存储,只能存储字符串,可以通过setItem()和getItem()方法存取数据.和localStorage的方法一样
+sessionStorage.setItem( 'key', 'value' ) //存储数据
+sessionStorage.getItem( 'key' ) //获取数据
+sessionStorage.removeItem( 'key' ) //删除数据
+
+// 3.存储复杂数据类型
+// 本地存储只能存储字符串,如果要存储复杂数据类型,需要先将数据转换为字符串,再存储
+const obj = { name: 'zs', age: 18 }
+localStorage.setItem( 'obj', JSON.stringify( obj ) ) // 将对象转换为字符串
+const objStr = JSON.parse( localStorage.getItem( 'obj' ) ) // 将字符串转换为对象
+
+// 额外
+// 数组map方法
+let arr = ['a', 'b', 'c']
+let newArr = arr.map(function (item, index) {
+	return item + index //item是数组元素,index是索引
+} )
+console.log( newArr ) //['a0', 'b1', 'c2']
+
+// join方法
+arr.join( '-' ) //将数组元素用-连接成字符串,返回字符串'a-b-c'
+arr.join( '' ) //将数组元素用空字符串连接成字符串,返回字符串'abc'

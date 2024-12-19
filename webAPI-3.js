@@ -55,7 +55,7 @@ son.addEventListener('mouseenter', function () {
 son.addEventListener('mouseleave', function () {
   console.log('son mouseleave')
 })
-// 鼠标移入father,输出father mouseenter,然后移入子元素son,输出son mouseenter,再移出son,输出son mouseleave,再移出father,输出father mouseleave
+// 鼠标移入father,输出father mouseenter,然后移入子元素son,输出son mouseenter,再移出  son,输出son mouseleave,再移出father,输出father mouseleave
 
 // 二.事件委托
 // 1.事件委托的原理
