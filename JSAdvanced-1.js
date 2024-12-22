@@ -127,4 +127,98 @@ function sum (a, b, ...rest) {
 let arr1 = [1, 2, 3]
 console.log( ...arr_ ) // 1 2 3
 let arr2 = [4, 5, 6]
-let arr3 = [ ...arr1, ...arr2 ] // [1, 2, 3, 4, 5, 6]
+let arr3 = [...arr1, ...arr2] // [1, 2, 3, 4, 5, 6]
+
+// 七.箭头函数
+// 1.箭头函数是ES6新增的函数,箭头函数没有this,arguments,super,不能使用new调用,没有原型,不能作为构造函数
+// 2.箭头函数的特点:
+// I.箭头函数没有this,内部的this指向外部的this,即作用域链的上一层
+// II.箭头函数没有arguments,但是可以使用剩余参数
+// III.箭头函数不能使用new调用,没有原型
+// IV.箭头函数不能使用super
+// V.箭头函数不能使用yield
+// VI.箭头函数不能作为构造函数,不能使用new调用
+// VII.箭头函数没有原型
+// 相当于匿名函数
+const fn = ( arg ) => {
+    console.log( arg )
+}
+//以上是标准的箭头函数,若只有一个参数,可以省略括号,若只有一行代码,可以省略大括号
+// 若大括号中有return,则不能省略大括号,若大括号外还有(),表示返回一个对象,因为对象是用{}表示的,函数体也是用{}表示的,所以需要用()区分
+const fn = arg => ( { name: arg } ) // 返回一个对象
+// DOM事件回调函数,不太适合使用箭头函数,因为箭头函数没有this,无法获取到事件对象
+// 但是可以通过事件对象的target属性获取到当前元素0
+document.onclick = ( e ) => {
+    console.log( e.target ) //此时的this就是document的this,指向window
+}
+
+// 八.解构赋值
+// 解构赋值是ES6新增的特性,可以快速获取数组或对象中的元素,赋值给变量
+// 1.数组解构赋值
+// I.基本用法
+let arr4 = [1, 2, 3]
+let [a, b, c] = arr4 // a=1, b=2, c=3 也可以使用let [a, b, c] = [1, 2, 3]
+let [a1, b1, c1] = [1, 2, 3] // a=1, b=2, c=3
+[a1, b1] = [b1, a1] // a=2, b=1 交换两个变量的值
+// II.默认值
+let [a2, b2, c2 = 3] = [1, 2] // a=1, b=2, c=3  若没有默认值,则为undefined
+// III.剩余元素
+let [a3, ...rest] = [1, 2, 3, 4] // a=1, rest=[2, 3, 4]
+// IV.嵌套解构
+let [a4, [b4, c4]] = [1, [2, 3]] // a=1, b=2, c=3
+let [a5, { b5, c5 }] = [1, { b5: 2, c5: 3 }] // a=1, b=2, c=3
+let [a6, { b6: { c6 } }] = [1, { b6: { c6: 3 } }] // a=1, c=3
+let [a7,b7]=[1,[2,3]] // a=1, b=[2,3]
+// VI.忽略元素
+let [a8, , c8] = [1, 2, 3] // a=1, c=3  忽略第二个元素
+
+// 2.对象解构赋值
+// I.基本用法
+let obj1 = { name: 'Tom', age: 18 }
+let { name, age } = obj1 // name='Tom', age=18
+// II.默认值
+let { name: name1, age: age1 = 18 } = { name: 'Tom' } // name1='Tom', age1=18,就是将name赋值给name1,age赋值给age1,相当于给name和age起别名,:号在js中是起别名的意思
+// III.嵌套解构
+let { name: name2, age: { age2 } } = { name: 'Tom', age: { age2: 18 } } // name2='Tom', age2=18
+// IV.剩余元素
+let { name: name3, ...rest1 } = { name: 'Tom', age: 18 } // name3='Tom', rest1={ age: 18 }
+// V.忽略元素
+let { name: name4, age: age4 } = { name: 'Tom', age: 18 } // name4='Tom', age4=18
+// VI.多级对象解构
+const msg = {
+    code: 0,
+    data: {
+        name: 'Tom',
+        age: 18
+    }
+}
+const { data } = msg //这样data就是msg.data,它会自动解构msg,寻找名称为data的属性
+
+// 3.字符串解构赋值
+// 字符串解构赋值是将字符串转换为数组,再进行解构赋值
+let [s, t, r] = 'abc' // s='a', t='b', r='c'
+
+// 4.函数参数解构赋值
+// I.基本用法
+function fn ( { name, age } ) {
+    console.log( name, age )
+}
+fn( { name: 'Tom', age: 18 } ) // name='Tom', age=18
+// II.默认值
+function fn ( { name, age = 18 } ) {
+    console.log( name, age )
+}
+
+// 九.数组进阶
+// 1.遍历数组
+// forEach方法,调用数组的每个元素,并将元素传递给回调函数
+let arr9 = [1, 2, 3]
+arr9.forEach( function ( item, index ) {
+    console.log( item, index )
+} )//参数item是数组的元素,index是数组的下标,item必须写,index可以不写
+
+// 2.筛选数组
+// filter方法,筛选数组中符合条件的元素,返回一个新数组
+arr9.filter( function ( item, index ) {
+    return item > 1
+} )//返回[2, 3],return后面的条件是筛选条件,返回的是一个新数组,不会改变原数组
