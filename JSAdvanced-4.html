@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="box" style="width: 100px; height: 100px; background: teal"></div>
+		<script>
+			let i = 1
+			function mousemove() {
+				box.innerHTML = i++
+			}
+			function throttle(func, t = 500) {
+				let start = 0
+				return () => {
+					let now = Date.now()
+					if (now - start > t) {
+						func()
+						start = now
+					}
+				}
+			}
+			const box = document.querySelector('.box')
+			box.addEventListener('mousemove', throttle(mousemove, 500))
+		</script>
+	</body>
+</html>

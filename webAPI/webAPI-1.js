@@ -75,4 +75,5 @@ setInterval(function () {
 let timer = setInterval(function () {
     console.log('hello');
 }, 1000 ); //每隔1s打印一次hello
-clearInterval(timer); //关闭定时器
+clearInterval( timer ); //关闭定时器
+// 如果是已经定义的函数,直接传入函数名,表示传入函数的引用,若是加(),表示执行函数,传入函数的返回值
