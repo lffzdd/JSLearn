@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  可以上传文件的控件只有<code><input type="file"></code>，还可以使用<code><input type="file" multiple></code>选择多个文件上传
+
+  当1个表单包含文件上传控件时，表单的<code>enctype</code>属性必须设置为<code>multipart/form-data</code>，<code>method</code>属性必须设置为<code>post</code>,浏览器才能正确编码表单数据
+
+  出于安全考虑,浏览器只允许用户点击<code><input type="file"></code>来选择本地文件，用JavaScript对<code><input type="file"></code>的value赋值是没有任何效果的。当用户选择了上传某个文件后，JavaScript也无法获得该文件的真实路径
+
+  <script>
+    // 通常,上传的文件都由后台服务器处理,前端只负责将文件上传到服务器,Js可以在提交表单时对文件进行检查
+    const input = document.querySelector('input[type="file"]')
+    const filename = input.value // C:\fakepath\file.txt
+    if
+  </script>
+</body>
+</html>
