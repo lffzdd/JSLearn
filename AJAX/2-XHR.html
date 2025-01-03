@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script>
-      xhr = new XMLHttpRequest()
-      /* 
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			xhr = new XMLHttpRequest()
+			/*
       XMLHttpRequest对象的常见属性如下：
       readyState:存有的XMLHttpRequest的状态从0到4发生变化。
         0：请求未初始化
@@ -36,6 +36,23 @@
       void send (content)	               发送获取请求。
       setRequestHeader (label，value)     将标签/值对添加到要发送的HTTP标头。
       */
-    </script>
-  </body>
+
+			// 向服务器发送请求
+			// 当你的页面全部加载完毕后，客户端会通过 XMLHttpRequest 对象向服务器请求数据，服务器端接受数据并处理后，向客户端反馈数据。如需将请求发送到服务器，我们使用 XMLHttpRequest 对象的open()和send()方法：
+			xhr.open('get', 'url', true) // open(method,url,async) 规定请求的类型、URL 以及是否异步处理请求。XMLHttpRequest 对象如果要用于 AJAX 的话，其open()方法的sync(async)参数必须设置为 true
+			xhr.send() // send(string),将请求发送到服务器。string：仅用于 POST 请求
+
+			// 　如果需要像 HTML 表单那样 POST 数据，请使用setRequestHeader()来添加 HTTP 头。然后在send()方法中规定您希望发送的数据：
+			xhr.open('POST', 'ajax_test.html', true)
+			xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded') // setRequestHeader(header,value) header: 规定头的名称 value: 规定头的值
+			xhr.send('fname=Henry&lname=Ford')
+
+			//当您使用 async=false 时，请不要编写 onreadystatechange 函数 - 把代码放到send()语句后面即可：https://www.w3cschool.cn/ajax/ajax-xmlhttprequest-send.html
+			xhr.open('GET', 'ajax_info.txt', false)
+			xhr.send()
+			document.getElementById('myDiv').innerHTML = xhr.responseText
+      new XMLHttpRequest().responseXML
+      
+		</script>
+	</body>
 </html>
