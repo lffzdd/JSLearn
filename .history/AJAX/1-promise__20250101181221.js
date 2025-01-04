@@ -30,9 +30,9 @@ class MyPromise {
   }
 
   then(onFulfilled, onRejected) {
-    if (this.state === 'fulfilled') {
+    if (this.value === 'fulfilled') {
       onFulfilled(this.value)
-    } else if (this.state === 'rejected') {
+    } else if (this.value === 'rejected') {
       onRejected(this.reason)
     } else if (this.value === 'pending') {
       this.onFulfilledCallBacks.push(onFulfilled)
