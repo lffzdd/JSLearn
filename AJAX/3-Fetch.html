@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script>
-      // 一.
-      fetch('http://ajax-base-api-t.itheima.net/api/getbooks')
-        .then((res) => {
-          // 这里得到的res,是一个Response对象,需要通过特定的方法获取其中的内容
-          console.log(res)
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			// 一.
+			fetch('http://ajax-base-api-t.itheima.net/api/getbooks')
+				.then(res => {
+					// 这里得到的res,是一个Response对象,需要通过特定的方法获取其中的内容
+					console.log(res)
 
-          //res.json() 是一个异步操作,表示取出所有的内容,并将其转换成JSON对象
-          // console.log(res.json())
-          // 打印发现是一个pending的Promise对象,res.json() 内部会从流（response.body）中 读取数据,而HTTP 响应的 body 是一个 ReadableStream，它的数据是一次性消费的：一旦数据被读取，就不能再次读取，流也会被关闭。因此，res.json() 第二次调用时，流中已经没有数据了。
-          return res.json()
-        })
-        .then((json) => {
-          // 获取经过res.json()处理之后的数据
-          console.log(json)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+					//res.json() 是一个异步操作,表示取出所有的内容,并将其转换成JSON对象
+					// console.log(res.json())
+					// 打印发现是一个pending的Promise对象,res.json() 内部会从流（response.body）中 读取数据,而HTTP 响应的 body 是一个 ReadableStream，它的数据是一次性消费的：一旦数据被读取，就不能再次读取，流也会被关闭。因此，res.json() 第二次调用时，流中已经没有数据了。
+					return res.json()
+				})
+				.then(json => {
+					// 获取经过res.json()处理之后的数据
+					console.log(json)
+				})
+				.catch(err => {
+					console.log(err)
+				})
 
-      // 二.把代码封装成async异步函数
-      async function getData(url) {
-        try {
-          const res = await fetch(url)
-          const json = await res.json()
-          console.log(json)
-        } catch (err) {
-          console.error(err)
-        }
-      }
-      getData('http://ajax-base-api-t.itheima.net/api/getbooks')
+			// 二.把代码封装成async异步函数
+			async function getData(url) {
+				try {
+					const res = await fetch(url)
+					const json = await res.json()
+					console.log(json)
+				} catch (err) {
+					console.error(err)
+				}
+			}
+			getData('http://ajax-base-api-t.itheima.net/api/getbooks')
 
-      //查询参数
-      getData('http://ajax-base-api-t.itheima.net/api/getbooks?id=2')
+			//查询参数
+			getData('http://ajax-base-api-t.itheima.net/api/getbooks?id=2')
 
-      //三.fetch配置参数
-      /* fetch(url, {
+			// 三.fetch配置参数
+			/* fetch(url, {
         method: '请求方式,比如:post,delete,put',
         headers: {
           'Content-Type': '数据格式',
@@ -50,26 +50,76 @@
         body: 'post请求体数据',
       }) */
 
-      async function add() {
-        const obj = {
-          bookname: '小石潭记',
-          author: '阿尼亚',
-          publisher: 'lff',
-        }
-        const res = await fetch(
-          'http://ajax-base-api-t.itheima.net/api/addbook',
-          {
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(obj),
-          }
-        )
-        const json = await res.json()
-        console.log(json)
-      }
-      add()
-    </script>
-  </body>
+			async function add() {
+				const obj = {
+					bookname: '小石潭记',
+					author: '阿尼亚',
+					publisher: 'lff',
+				}
+				const res = await fetch('http://ajax-base-api-t.itheima.net/api/addbook', {
+					method: 'post',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(obj),
+				})
+				const json = await res.json()
+				console.log(json)
+			}
+			add()
+
+			// 四.进一步封装
+
+			async function http(obj) {
+				let { method, url, params, data } = obj //没有设置的为undefined
+				let res
+
+				//处理params
+				if (params) {
+					// 固定写法: new URLSearchParams(obj).toString()
+					url += '?' + new URLSearchParams(params).toString()
+					console.log(url) // 这里如果url是const就不行,所以得为let
+				}
+				if (data) {
+					res = await fetch(url, {
+						method: method,
+						headers: {
+							'Content-Type': 'application/json,charset=utf-8`',
+						},
+						body: JSON.stringify(data),
+					})
+				} else {
+					res = await fetch(url)
+				}
+
+				return res.json()
+			}
+			// get请求
+			async function Get() {
+				const result = await http({
+					method: 'get',
+					url: 'http://ajax-base-api-t.itheima.net/api/getbooks',
+					params: {
+						id: 1,
+					},
+				})
+        console.log('Get成功')
+				console.log(result)
+			}
+
+			async function Post() {
+				const result = await http({
+					method: 'post',
+					url: 'http://ajax-base-api-t.itheima.net/api/addbook',
+					data: {
+						bookname: '如何吃软饭',
+						author: 'lff',
+						publisher: '理塘出版社',
+					},
+				})
+				console.log(result)
+			}
+			Get()
+		</script>
+	</body>
 </html>
