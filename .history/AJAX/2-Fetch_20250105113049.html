@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      fetch('http://ajax-base-api-t.itheima.net/api/getbooks').then((res) => {
+        // 这里得到的res,是一个Response对象,需要通过特定的方法获取其中的内容
+        console.log(res)
+
+        //res.json()
+      })
+    </script>
+  </body>
+</html>

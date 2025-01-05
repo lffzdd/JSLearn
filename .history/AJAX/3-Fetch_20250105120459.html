@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      fetch('http://ajax-base-api-t.itheima.net/api/getbooks')
+        .then((res) => {
+          // 这里得到的res,是一个Response对象,需要通过特定的方法获取其中的内容
+          console.log(res)
+
+          //res.json() 是一个异步操作,表示取出所有的内容,并将其转换成JSON对象
+          // console.log(res.json())
+          // 打印发现是一个pending的Promise对象,res.json() 内部会从流（response.body）中 读取数据,而HTTP 响应的 body 是一个 ReadableStream，它的数据是一次性消费的：一旦数据被读取，就不能再次读取，流也会被关闭。因此，res.json() 第二次调用时，流中已经没有数据了。
+          return res.json()
+        })
+        .then((json) => {
+          // 获取经过res.json()处理之后的数据
+          console.log(json)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+
+        // 把代码封装成async异步函数
+        async function getData(url) {
+          const res=await 
+        }
+    </script>
+  </body>
+</html>

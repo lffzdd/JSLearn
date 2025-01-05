@@ -24,7 +24,7 @@ function MyPromise(func) {
   func(resolve, reject)
 }
 
-MyPromise.prototype.then = function (onFulfilled, onRejected) {
+Promise.prototype.then = function (onFulfilled, onRejected) {
   onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
   onRejected = typeof onRejected === 'function' ? onRejected : reason => { throw reason }
   if (this.status === 'fulfilled') {
@@ -37,4 +37,4 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
   }
 }
 
-const promise=new MyPromise()
+const promise=new Promise()

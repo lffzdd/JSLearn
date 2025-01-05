@@ -37,4 +37,4 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
   }
 }
 
-const promise=new MyPromise()
+const promise=new M()

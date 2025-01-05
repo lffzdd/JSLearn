@@ -41,4 +41,4 @@ class MyPromise {
   }
 }
 
-const promise=new MyPromise()
+const promise=n
