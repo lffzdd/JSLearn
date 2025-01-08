@@ -42,3 +42,4 @@ import { val, add } from "module.js";
 // 2.默认导出
 // 若导出时只有一个值,可以使用默认导出,export default val;这样导入时可以直接import val from 'module.js'
 export default val // 直接export val会报错,因为默认导出只能有一个
+// import val from 'module.js')

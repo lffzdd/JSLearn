@@ -1,0 +1,19 @@
+{
+  "name": "my-cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "bin": {
+    "mycli": "bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "commander": "^13.0.0",
+    "inquirer": "^8.0.0",
+    "ora": "^5.4.1"
+  }
+}

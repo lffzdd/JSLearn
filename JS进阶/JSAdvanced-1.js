@@ -125,7 +125,7 @@ function sum(a, b, ...rest) {
 // 开发中,一般使用剩余参数,因为arguments是一个类数组对象,不方便使用
 // ...不仅可以获取剩余参数,还可以将数组展开
 let arr1 = [1, 2, 3]
-console.log(...arr_) // 1 2 3
+console.log(...arr1) // 1 2 3
 let arr2 = [4, 5, 6]
 let arr3 = [...arr1, ...arr2] // [1, 2, 3, 4, 5, 6]
 
