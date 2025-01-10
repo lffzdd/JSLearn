@@ -39,7 +39,7 @@ app.put('/:id', async (req, res) => {
     })
   }
   try {
-    await userPut(req, Number.parseInt(req.params.id))
+    await userPut(req, N(req.params.id))
     console.log(req.body)
     res.status(200).json(req.body)
     console.log('修改用户信息成功')
@@ -71,7 +71,7 @@ async function userPut(req, id) {
   const data = await getDb()
   const users=data.users
   users.forEach((element,index) => {
-    if (element.id === id) {
+    if (element.id == id) {
       req.body.id = id
       users[index]=req.body
       // element = req.body

@@ -32,20 +32,15 @@ app.post('/', async (req, res) => {
     }
 })
 
-app.put('/:id', async (req, res) => {
+app.put('/:id', (req, res) => {
   if (!req.body) {
     res.status(403).json({
       error: '缺少用户信息!',
     })
-  }
   try {
-    await userPut(req, Number.parseInt(req.params.id))
-    console.log(req.body)
-    res.status(200).json(req.body)
-    console.log('修改用户信息成功')
+    
   } catch (error) {
-    console.log(error)
-    res.status(500).send('修改用户数据失败')
+    
   }
 })
 
@@ -65,21 +60,15 @@ async function addUser(req) {
 }
 
 // async function getUser(params) {
-
+  
 // }
-async function userPut(req, id) {
-  const data = await getDb()
-  const users=data.users
-  users.forEach((element,index) => {
-    if (element.id === id) {
-      req.body.id = id
-      users[index]=req.body
-      // element = req.body
-      // element.name = req.body.name 会修改原始数组中的元素，因为 element 是原始数组元素的引用。而 element = req.body 只是改变了 element 变量的引用，不会影响原始数组。
-
-
-      // return req.body forEach内return只会退出当前的回调函数，而不会终止整个 forEach 循环
-    }
-  })
-  await putDb(data)
+async function userPut(req,id) {
+    const data=await getDb()
+    const user=data.user
+    user.forEach(element => {
+      if (element.id===id) {
+        req.body.id=id
+        element=req.body
+      }
+    }) 
 }

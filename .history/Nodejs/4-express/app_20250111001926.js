@@ -71,7 +71,7 @@ async function userPut(req, id) {
   const data = await getDb()
   const users=data.users
   users.forEach((element,index) => {
-    if (element.id === id) {
+    if (element.id == id) {
       req.body.id = id
       users[index]=req.body
       // element = req.body
