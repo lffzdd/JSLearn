@@ -21,3 +21,21 @@ pnpm-debug.log*
 *.sln
 *.sw?
 .history
+
+# 要从远程仓库中删除已经上传的 `.history` 文件夹，你可以按照以下步骤操作：
+
+# 1. 确保你的 `.gitignore` 文件已经正确配置，不再包含 `.history` 文件夹。
+# 2. 从本地仓库中删除 `.history` 文件夹：
+#   ```bash
+#   git rm -r --cached .history
+#   ```
+# 3. 提交更改：
+#   ```bash
+#   git commit -m "Remove .history folder from remote repository"
+#   ```
+# 4. 推送更改到远程仓库：
+#   ```bash
+#   git push origin main
+#   ```
+
+# 这样就会从远程仓库中删除 `.history` 文件夹，并且由于 `.gitignore` 文件的配置，未来的提交中也不会再包含这个文件夹。

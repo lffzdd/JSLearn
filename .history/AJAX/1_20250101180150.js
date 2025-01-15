@@ -1,3 +1,0 @@
-class MyPromise{
-  constructor(executor)
-}
