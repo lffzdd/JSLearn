@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "kareem": "^2.6.3",
     "mongoose": "^8.9.5",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15"

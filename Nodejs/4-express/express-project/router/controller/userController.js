@@ -1,14 +1,20 @@
+const { User } = require('../../db/index')
+// const { user } = require( '../user' )
+
 /**
  * Registers a new user.
  * @async
  * @function register
  * @param {import('express').Request} req - The Express request object
  * @param {import('express').Response} res - The Express response object
- * @returns {Promise<void>} 
+ * @returns {Promise<void>}
  */
 
-exports.register =async (req,res) => {
-  
+exports.register = async (req, res) => {
+	console.log(req.body)
+  const user = new User( req.body )
+	const result = await user.save()
+	res.status(201).json(result)
 }
 
 /**
@@ -17,11 +23,11 @@ exports.register =async (req,res) => {
  * @function list
  * @param {import('express').Request} req - The Express request object
  * @param {import('express').Response} res - The Express response object
- * @returns {Promise<void>} 
+ * @returns {Promise<void>}
  */
 exports.list = async (req, res) => {
-  console.log(req.url)
-  res.send('/user-list')
+	console.log(req.url)
+	res.send('/user-list')
 }
 
 /**
