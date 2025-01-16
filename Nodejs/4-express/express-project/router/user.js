@@ -5,8 +5,10 @@ const userController = require('./controller/userController')
 const { validate, userValid } = require('../middleware/validator/index')
 
 router
-	.post('/register', validate(userValid), userController.register)
-	.get('/list', userController.list)
+	.post('/registers', validate(userValid.register), userController.register)
+  .post('/logins',validate(userValid.login),userController.login)
+	.get('/lists', userController.list)
 	.delete('/', userController.delete)
 
 module.exports = router
+  

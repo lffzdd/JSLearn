@@ -3,7 +3,7 @@ const router = express.Router()
 const videoController=require('./controller/videoController')
 
 router
-  .get('/list', (req, res, next) => {
+  .get('/lists', (req, res, next) => {
     console.log(req.url)
     res.send('/video-list')
   })

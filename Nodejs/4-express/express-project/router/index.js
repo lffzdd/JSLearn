@@ -2,7 +2,7 @@ const express = require('express')
 
 const router = express.Router()
 
-router.use('/user',require('./user'))
-router.use('/video',require('./video'))
+router.use('/users',require('./user'))
+router.use('/videos',require('./video'))
 
 module.exports = router
