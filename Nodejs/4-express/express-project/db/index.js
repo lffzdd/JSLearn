@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
-
-async function main() {
+!(async function main() {
 	await mongoose
 		.connect('mongodb://localhost:27017/express-video')
 		.then(() => {
@@ -9,8 +8,7 @@ async function main() {
 		.catch(err => {
 			console.error('MongoDB connect failed', err)
 		})
-}
-main()
+})()
 
 module.exports = {
 	User: mongoose.model('User', require('./userModel')),

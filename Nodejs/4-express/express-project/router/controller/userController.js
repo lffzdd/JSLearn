@@ -1,5 +1,5 @@
 const { User } = require('../../db/index')
-// const { user } = require( '../user' )
+const { createToken } = require('../../util/jwt')
 
 /**
  * Registers a new user.
@@ -9,24 +9,28 @@ const { User } = require('../../db/index')
  */
 
 exports.register = async (req, res) => {
-  console.log('收到注册请求:\n', req.body)
-  const user = new User(req.body)
-  const result = await user.save()
-  res.status(201).json(result)
+	console.log('收到注册请求:\n', req.body)
+	const user = new User(req.body)
+	let result = await user.save()
+	result = result.toJSON()
+	delete result.password
+  res.status( 201 ).json( '注册成功:', result )
 }
 /**
- * 用户注册
+ * 用户登录
  * @param {import('express').Request} req - The Express request object
  * @param {import('express').Response} res - The Express response object
  */
 exports.login = async (req, res) => {
-  console.log('收到登录请求:\n', req.body)
-  const dbReq = await User.findOne(req.body)
-  if (dbReq) {
-    res.status(200).json(dbReq)
-  } else {
-    res.status(401).json({ error: '登录信息不正确' })
-  }
+	console.log('收到登录请求:\n', req.body)
+	let dbReq = await User.findOne(req.body)
+	if (dbReq) {
+		dbReq = dbReq.toJSON()
+		dbReq.token = await createToken(dbReq)
+    res.status( 200 ).json( dbReq )
+	} else {
+		res.status(402).json({ error: '登录信息不正确' })
+	}
 }
 
 /**
@@ -38,8 +42,9 @@ exports.login = async (req, res) => {
  * @returns {Promise<void>}
  */
 exports.list = async (req, res) => {
-  console.log(req.url)
-  res.send('/user-list')
+  console.log( req.url )
+  console.log( req.payload )
+	res.send('/user-list')
 }
 
 /**

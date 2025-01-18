@@ -1,3 +1,9 @@
+---
+noteId: "c3ca7430d3f811efa5f811e2e088d66d"
+tags: []
+
+---
+
 > 本文由 [简悦 SimpRead](http://ksria.com/simpread/) 转码， 原文地址 [restfulapi.cn](https://restfulapi.cn/jwt)
 
 > RESTful API 是 HTTP 协议的最佳实践, RESTful API 是一种软件架构风格、设计风格, 可以让软件更加清晰, 更简洁, 更有层次, 可维护性更好
